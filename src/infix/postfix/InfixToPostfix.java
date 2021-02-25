@@ -13,7 +13,7 @@ import java.util.Deque;
 
 public class InfixToPostfix {
     public String infixPostfix(String infix) {
-        String postfix = "";
+        StringBuilder postfix = new StringBuilder();
 
         Deque<Character> stack = new ArrayDeque<Character>();
         // step 1
@@ -44,18 +44,25 @@ public class InfixToPostfix {
                     }
                 }
             }
+            // step 6
+            else if (element == ')') {
+                while (!stack.isEmpty() && stack.peek() != '(') {
+                    postfix.append(stack.pop());
+                }
+                if (!stack.isEmpty() && stack.peek() == '(') {
+                    stack.pop();
+                }
+            }
         }
 
         return postfix;
     }
 
     private boolean isOperator(char elementFromInfix) {
-        boolean response = switch (elementFromInfix) {
+        return switch (elementFromInfix) {
             case '^', '/', '*', '+', '-' -> true;
             default -> false;
         };
-
-        return response;
     }
 
     private int precedence(char operator) {
