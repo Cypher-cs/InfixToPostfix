@@ -8,9 +8,21 @@ File: InfixToPostfix.java
 */
 package infix.postfix;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 public class InfixToPostfix {
     public String infixPostfix(String infix) {
         String postfix = "";
+
+        Deque<Character> stack = new ArrayDeque<Character>();
+        // step 1
+        stack.push('(');
+        infix = infix.concat(String.valueOf(')')); //or  infix + ')';
+        //step 2
+        for (int i = 0; i < infix.length(); i++) {
+            char element = infix.charAt(i);
+        }
 
         return postfix;
     }
@@ -23,7 +35,7 @@ public class InfixToPostfix {
         return response;
     }
     private int precedence(char operator) {
-        int response = 0;
+        int response;
         response = switch (operator) {
             case '^' -> 3;
             case '*', '/' -> 2;
