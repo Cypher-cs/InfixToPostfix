@@ -22,6 +22,12 @@ public class InfixToPostfix {
         //step 2
         for (int i = 0; i < infix.length(); i++) {
             char element = infix.charAt(i);
+            // step 3
+            if (Character.isAlphabetic(element) || Character.isDigit(element)) {
+                postfix = postfix + element;
+            }
+            // step 4
+
         }
 
         return postfix;
