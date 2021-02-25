@@ -13,7 +13,7 @@ import java.util.Deque;
 
 public class InfixToPostfix {
     public String infixPostfix(String infix) {
-        StringBuilder postfix = new StringBuilder();
+        String postfix = "";
 
         Deque<Character> stack = new ArrayDeque<Character>();
         // step 1
@@ -47,7 +47,7 @@ public class InfixToPostfix {
             // step 6
             else if (element == ')') {
                 while (!stack.isEmpty() && stack.peek() != '(') {
-                    postfix.append(stack.pop());
+                    postfix = postfix + stack.pop();
                 }
                 if (!stack.isEmpty() && stack.peek() == '(') {
                     stack.pop();
