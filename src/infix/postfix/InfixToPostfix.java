@@ -27,11 +27,28 @@ public class InfixToPostfix {
                 postfix = postfix + element;
             }
             // step 4
-
+            else if (element == '(') {
+                stack.push(element);
+            }
+            // step 5.a
+            else if (isOperator(element)) {
+                while(!stack.isEmpty()) {
+                    if (precedence(stack.peek()) >= precedence(element)) {
+                        // leaving space for associativity
+                         postfix = postfix + stack.pop();
+                    }
+                    // step 5.b
+                    else {
+                        stack.push(element);
+                        break;
+                    }
+                }
+            }
         }
 
         return postfix;
     }
+
     private boolean isOperator(char elementFromInfix) {
         boolean response = switch (elementFromInfix) {
             case '^', '/', '*', '+', '-' -> true;
@@ -40,6 +57,7 @@ public class InfixToPostfix {
 
         return response;
     }
+
     private int precedence(char operator) {
         int response;
         response = switch (operator) {
