@@ -13,7 +13,7 @@ import infix.postfix.InfixToPostfix;
 public class MyMain {
     public static void main(String[] args) {
         InfixToPostfix converter = new InfixToPostfix();
-        String infix = "A+B";
+        String infix = "A+(B*C-(D/E^F)*G)*H";
         String postfix = converter.infixPostfix(infix);
         System.out.println("postfix -> "  + postfix);
     }
